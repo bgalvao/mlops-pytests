@@ -1,3 +1,7 @@
-- https://stackoverflow.com/a/34520971/13187430
-- https://realpython.com/pytest-python-testing/#fixtures-managing-state-and-dependencies
-- https://pypi.org/project/pytest-fixture-typecheck/
+References:
+
+- [Effective Python Testing With Pytest
+](https://realpython.com/pytest-python-testing/)
+- [`pytest-fixture-typecheck`](https://pypi.org/project/pytest-fixture-typecheck/) plugin
+- [A comprehensive guide to pytest
+](https://levelup.gitconnected.com/a-comprehensive-guide-to-pytest-3676f05df5a0) (best for understanding `conftest.py` and fixture scopes).
