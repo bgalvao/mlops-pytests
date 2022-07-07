@@ -5,49 +5,50 @@ from deepchecks.tabular.checks import model_evaluation as me
 def test_BoostingOverfit(
     train_dataset: Dataset,
     test_dataset: Dataset,
+    model,
     alternative_scorer: Tuple[str, Union[str, Callable]] = None,
     num_steps: int = 20,
 ):
     check = me.BoostingOverfit(alternative_scorer, num_steps)
     # add conditions here
-    assert check.run(train_dataset, test_dataset).passed_conditions()
+    assert check.run(train_dataset, test_dataset, model).passed_conditions()
 
 
 def test_CalibrationScore(train_dataset: Dataset):
     check = me.CalibrationScore()
     # add conditions here
-    assert check.run(train_dataset).passed_conditions()
+    assert check.run(train_dataset, model).passed_conditions()
 
 
 def test_ConfusionMatrixReport(test_dataset: Dataset):
     check = me.ConfusionMatrixReport()
     # add conditions here
-    assert check.run(test_dataset).passed_conditions()
+    assert check.run(test_dataset, model).passed_conditions()
 
 
 def test_ModelInferenceTime(test_dataset: Dataset, n_samples):
     check = me.ModelInferenceTime(n_samples)
     # add conditions here
-    assert check.run(test_dataset).passed_conditions()
+    assert check.run(test_dataset, model).passed_conditions()
 
 
 def test_RocReport(test_dataset: Dataset, excluded_classes):
     check = me.RocReport()
     # add conditions here
-    assert check.run(test_dataset).passed_conditions()
+    assert check.run(test_dataset, model).passed_conditions()
 
 
 def test_ModelErrorAnalysis(train_dataset: Dataset, test_dataset: Dataset):
     # deprecated in 0.8.1
     check = me.ModelErrorAnalysis()
     # add conditions here
-    assert check.run(train_dataset, test_dataset).passed_conditions()
+    assert check.run(train_dataset, test_dataset, model).passed_conditions()
 
 
 def test_ConstantModelComparison(train_dataset: Dataset, test_dataset: Dataset):
     check = me.SimpleModelComparison(simple_model_type="constant")
     # add conditions here
-    assert check.run(train_dataset, test_dataset).passed_conditions()
+    assert check.run(train_dataset, test_dataset, model).passed_conditions()
 
 
 def test_RandomModelComparison(
@@ -57,7 +58,7 @@ def test_RandomModelComparison(
         simple_model_type="random", random_state=random_state
     )
     # add conditions here
-    assert check.run(train_dataset, test_dataset).passed_conditions()
+    assert check.run(train_dataset, test_dataset, model).passed_conditions()
 
 
 def test_TreeModelComparison(
@@ -67,7 +68,7 @@ def test_TreeModelComparison(
         simple_model_type="tree", random_state=random_state
     )
     # add conditions here
-    assert check.run(train_dataset, test_dataset).passed_conditions()
+    assert check.run(train_dataset, test_dataset, model).passed_conditions()
 
 
 def test_TrainTestPredictionDrift(
@@ -81,7 +82,7 @@ def test_TrainTestPredictionDrift(
         max_num_categories_for_drift=max_num_categories_for_drift,
     )
     # add conditions here
-    assert check.run(train_dataset, test_dataset).passed_conditions()
+    assert check.run(train_dataset, test_dataset, model).passed_conditions()
 
 
 def test_UnusedFeatures(
@@ -97,4 +98,4 @@ def test_UnusedFeatures(
         random_state=random_state,
     )
     # add conditions here
-    assert check.run(train_dataset, test_dataset).passed_conditions()
+    assert check.run(train_dataset, test_dataset, model).passed_conditions()
