@@ -2,4 +2,16 @@
 
 I wrote pytest scripts so you don't have to.
 
-Note: [really nice pytest plugins for you to try out](https://towardsdatascience.com/pytest-plugins-to-love-%EF%B8%8F-9c71635fbe22).
+This is meant to be a cookiecutter - a starting point for you to configure your tests as you need them.
+
+To generate these tests, cd to your project and run:
+
+```bash
+cookiecutter gh:bgalvao/mlops-pytests
+```
+
+## Roadmap
+
+- [x] added [Deepchecks](https://deepchecks.com)
+
+Other tests from other MLOps oriented packages may be added.
