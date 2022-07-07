@@ -51,7 +51,8 @@ def whole_dataset(whole_df: DataFrame) -> Dataset:
     return Dataset(whole_dataset, **deepchecks_dataset_params)
 
 
-@pytest.fixture(scope=TEST_SCOPE)
+# only test_model_validation will need this fixture
+@pytest.fixture(scope="module")
 def model():
     raise NotImplementedError()
     # assert hasattr(model, 'predict_proba')
